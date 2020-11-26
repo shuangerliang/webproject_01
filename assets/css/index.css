@@ -2,6 +2,9 @@ a {
     /* a标签默认动画效果取消 */
     transition: none !important;
 }
+body {
+    padding: 0 !important;
+}
 .layui-footer {
     text-align: center;
     font-size: 12px;

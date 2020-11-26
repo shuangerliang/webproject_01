@@ -1,20 +1,25 @@
 $(function () {
     //用于获取信息
     getUserInfo()
+
+
+    $('#btnLogOut').on('click', function () {
+        layer.confirm('是否确认退出?', { icon: 3, title: '提示' }, function (index) {
+            //1.清空本地缓存token
+            localStorage.removeItem('token')
+            //2.跳转到登录页面
+            location.href = '/login.html'
+            //3.关闭提示框
+            layer.close(index)
+        });
+    
+                
+    })
 })
 
 var layer = layui.layer
-$('#btnLogOut').on('click', function () {
-    layer.confirm('是否确认退出?', { icon: 3, title: '提示' }, function (index) {
-        //1.清空本地缓存token
-        localStorage.removeItem('token')
-        //2.跳转到登录页面
-        location.href = '/login.html'
-        //3.关闭提示框
-        layer.close(index)
-    });
 
-})
+
 //其他页面要调用 全局函数
 function getUserInfo() {
     $.ajax({
@@ -28,6 +33,7 @@ function getUserInfo() {
             if (res.status !== 0) {
                 return layui.layer.msg(res.message)
             }
+            // 调用 renderAvatar 渲染用户的头像
             renderAvatar(res.data)
         }
 
