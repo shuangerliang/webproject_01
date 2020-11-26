@@ -58,10 +58,11 @@ $(function () {
             success: function (res) {
                 if (res.status !== 0) {
                     return layer.msg(res.message)
-                }
+                }             
 
                 //提示信息 保存token 未来接口要使用 跳转页面
                 layer.msg('恭喜您登录成功')
+                //权限校验 用户是否登录
                 localStorage.setItem('token', res.token)
                 location.href = '/index.html'
             }
